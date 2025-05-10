@@ -1,24 +1,67 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Generate : MonoBehaviour
 {
-    public enum ColorType { Red, Black, Green }
+    public GameObject redPrefab;
+    public GameObject greenPrefab;
+    public GameObject blackPrefab;
 
-    [System.Serializable]
-    public class RollSlot
+    public Transform slotsContainer;
+
+    int totalSlots = 15; // powinno byæ nieparzyste, by green by³ na œrodku
+
+    private List<ColorType> slotSequence = new();
+
+    public enum ColorType
     {
-        public ColorType color;
-        public Sprite icon; // np. czerwone/czarne/zielone pole
+        Red,
+        Green,
+        Black
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        
+        GenerateSlots();
+        ShowSlots();
     }
 
-    // Update is called once per frame
-    void Update()
+    void GenerateSlots()
     {
-        
+        slotSequence.Clear();
+        int centerIndex = totalSlots / 2;
+
+        // Lewa strona (w odwrotnej kolejnoœci bo idziemy w lewo)
+        for (int i = centerIndex - 1; i >= 0; i--)
+        {
+            slotSequence.Insert(0, (i % 2 == 0) ? ColorType.Black : ColorType.Red);
+        }
+
+        // Green na œrodku
+        slotSequence.Insert(centerIndex, ColorType.Green);
+
+        // Prawa strona
+        for (int i = 0; i < centerIndex; i++)
+        {
+            slotSequence.Add((i % 2 == 0) ? ColorType.Red : ColorType.Black);
+        }
+    }
+
+    void ShowSlots()
+    {
+        foreach (Transform child in slotsContainer)
+            Destroy(child.gameObject);
+
+        foreach (ColorType color in slotSequence)
+        {
+            GameObject prefab = null;
+            switch (color)
+            {
+                case ColorType.Red: prefab = redPrefab; break;
+                case ColorType.Green: prefab = greenPrefab; break;
+                case ColorType.Black: prefab = blackPrefab; break;
+            }
+            Instantiate(prefab, slotsContainer);
+        }
     }
 }
