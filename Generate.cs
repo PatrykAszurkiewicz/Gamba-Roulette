@@ -9,7 +9,9 @@ public class Generate : MonoBehaviour
 
     public Transform slotsContainer;
 
-    int totalSlots = 15; // powinno byæ nieparzyste, by green by³ na œrodku
+    private RouletteScroll rs;
+
+    public int totalSlots = 15; // powinno byæ nieparzyste, by green by³ na œrodku
 
     private List<ColorType> slotSequence = new();
 
@@ -49,6 +51,9 @@ public class Generate : MonoBehaviour
 
     void ShowSlots()
     {
+        float slotWidth = 150f;
+        float currentX = 0f;
+
         foreach (Transform child in slotsContainer)
             Destroy(child.gameObject);
 
@@ -61,7 +66,13 @@ public class Generate : MonoBehaviour
                 case ColorType.Green: prefab = greenPrefab; break;
                 case ColorType.Black: prefab = blackPrefab; break;
             }
-            Instantiate(prefab, slotsContainer);
+            GameObject slot = Instantiate(prefab, slotsContainer);
+            RectTransform rt = slot.GetComponent<RectTransform>();
+            rt.anchoredPosition = new Vector2(currentX, 0);
+            currentX += slotWidth; //100 bylo
         }
+        int centerIndex = totalSlots / 2;
+        float offsetToCenter = -centerIndex * slotWidth;
+        slotsContainer.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetToCenter, 0);
     }
 }
