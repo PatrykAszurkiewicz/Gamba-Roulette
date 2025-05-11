@@ -58,12 +58,14 @@ public class RouletteScroll : MonoBehaviour
         {
             RectTransform slot = slotsContainer.GetChild(i) as RectTransform;
 
-            float slotXInContainer = slot.anchoredPosition.x + containerOffsetX;
-            float rightEdge = slotXInContainer + slotWidth / 2f;
+            float worldX = slot.TransformPoint(Vector3.zero).x;
+            float panelX = slotsContainer.parent.TransformPoint(Vector3.zero).x;
+
+            float relativeX = worldX - panelX;
+            float rightEdge = relativeX + slotWidth / 2f;
 
             if (rightEdge < -slotWidth)
             {
-                // znajdŸ ostatni slot
                 RectTransform lastSlot = slotsContainer.GetChild(slotsContainer.childCount - 1) as RectTransform;
                 float newX = lastSlot.anchoredPosition.x + slotWidth;
 
