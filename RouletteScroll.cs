@@ -5,13 +5,15 @@ using UnityEngine.UI;
 public class RouletteScroll : MonoBehaviour
 {
     public RectTransform slotsContainer;
-
-    public float scrollSpeed = 500f;
+    public float minScrollSpeed = 500f;
+    public float maxScrollSpeed = 1000f;
+    
     public float slotWidth = 150f;
     public Button startButton;
 
     private bool isScrolling = false;
-    private float distanceToScroll;
+    //private float distanceToScroll;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,28 +29,56 @@ public class RouletteScroll : MonoBehaviour
     {
         if(isScrolling) return;
 
-        distanceToScroll = Random.Range(3000f, 6000f);
+        //distanceToScroll = Random.Range(3000f, 6000f);
         StartCoroutine(ScrollRoutine());
     }
     IEnumerator ScrollRoutine()
     {
+        
         isScrolling = true;
-        float scrolled = 0f;
 
-        while(scrolled < distanceToScroll)
+        float duration = Random.Range(4f, 5f); // ca³kowity czas scrolla
+        float accelTime = Random.Range(0.5f, 1f);
+        float decelTime = Random.Range(2f, 3f);
+        float elapsed = 0f;
+
+        float scrollSpeed = Random.Range(minScrollSpeed, maxScrollSpeed);
+        float maxSpeed = scrollSpeed; // maksymalna prêdkoœæ
+        float currentSpeed = 0f;
+
+        while (elapsed < duration)
         {
-            float delta = scrollSpeed * Time.deltaTime;
-            scrolled += delta;
+            float t = elapsed;
 
+            // Faza przyspieszenia
+            if (t < accelTime)
+            {
+                float a = t / accelTime;
+                currentSpeed = Mathf.Lerp(0f, maxSpeed, EaseOutCubic(a));
+            }
+            // Faza zwolnienia
+            else if (t > duration - decelTime)
+            {
+                float d = (t - (duration - decelTime)) / decelTime;
+                currentSpeed = Mathf.Lerp(maxSpeed, 0f, EaseInCubic(d));
+            }
+            // Sta³a prêdkoœæ
+            else
+            {
+                currentSpeed = maxSpeed;
+            }
+
+            float delta = currentSpeed * Time.deltaTime;
             slotsContainer.anchoredPosition -= new Vector2(delta, 0f);
-
             LoopSlotsIfNeed();
-            
+
+            elapsed += Time.deltaTime;
             yield return null;
         }
 
         isScrolling = false;
     }
+
 
     void LoopSlotsIfNeed()
     {
@@ -80,6 +110,17 @@ public class RouletteScroll : MonoBehaviour
         }
     }
 
+    // Szybki start, wolne zakoñczenie (do przyspieszania)
+    float EaseOutCubic(float t)
+    {
+        return 1f - Mathf.Pow(1f - t, 3);
+    }
+
+    // Wolny start, szybkie zakoñczenie (do zwalniania)
+    float EaseInCubic(float t)
+    {
+        return t * t * t;
+    }
 
 
 
