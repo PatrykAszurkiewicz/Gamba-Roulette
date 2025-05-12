@@ -43,7 +43,7 @@ public class RouletteScroll : MonoBehaviour
             slotsContainer.anchoredPosition -= new Vector2(delta, 0f);
 
             LoopSlotsIfNeed();
-
+            
             yield return null;
         }
 
@@ -52,28 +52,36 @@ public class RouletteScroll : MonoBehaviour
 
     void LoopSlotsIfNeed()
     {
-        float containerOffsetX = slotsContainer.anchoredPosition.x;
+        float leftEdgeWorld = slotsContainer.parent.TransformPoint(Vector3.zero).x - 1080;
 
         for (int i = 0; i < slotsContainer.childCount; i++)
         {
             RectTransform slot = slotsContainer.GetChild(i) as RectTransform;
+            float slotWorldX = slot.TransformPoint(Vector3.zero).x;
 
-            float worldX = slot.TransformPoint(Vector3.zero).x;
-            float panelX = slotsContainer.parent.TransformPoint(Vector3.zero).x;
+            float rightEdge = slotWorldX + slotWidth / 2f;
 
-            float relativeX = worldX - panelX;
-            float rightEdge = relativeX + slotWidth / 2f;
-
-            if (rightEdge < -slotWidth)
+            if (rightEdge < leftEdgeWorld)
             {
-                RectTransform lastSlot = slotsContainer.GetChild(slotsContainer.childCount - 1) as RectTransform;
-                float newX = lastSlot.anchoredPosition.x + slotWidth;
+                // ZnajdŸ najbardziej prawy slot
+                float maxAnchoredX = float.MinValue;
+                for (int j = 0; j < slotsContainer.childCount; j++)
+                {
+                    if (j == i) continue;
+                    float x = (slotsContainer.GetChild(j) as RectTransform).anchoredPosition.x;
+                    if (x > maxAnchoredX)
+                        maxAnchoredX = x;
+                }
 
+                float newX = maxAnchoredX + slotWidth;
                 slot.SetAsLastSibling();
                 slot.anchoredPosition = new Vector2(newX, 0f);
             }
         }
     }
+
+
+
 
 
 }
