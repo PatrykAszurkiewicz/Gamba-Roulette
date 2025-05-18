@@ -37,13 +37,13 @@ public class RouletteScroll : MonoBehaviour
         
         isScrolling = true;
 
-        float duration = Random.Range(3f, 5f); // ca³kowity czas scrolla
+        float duration = Random.Range(3f, 5f); // total scrolling time
         float accelTime = Random.Range(0.5f, 1f);
         float decelTime = Random.Range(1f, 2f);
         float elapsed = 0f;
 
         float scrollSpeed = Random.Range(minScrollSpeed, maxScrollSpeed);
-        float maxSpeed = scrollSpeed; // maksymalna prêdkoœæ
+        float maxSpeed = scrollSpeed; //max speed
         float currentSpeed = 0f;
 
         while (elapsed < duration)
