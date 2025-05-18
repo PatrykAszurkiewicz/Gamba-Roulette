@@ -37,9 +37,9 @@ public class RouletteScroll : MonoBehaviour
         
         isScrolling = true;
 
-        float duration = Random.Range(4f, 5f); // ca³kowity czas scrolla
+        float duration = Random.Range(3f, 5f); // ca³kowity czas scrolla
         float accelTime = Random.Range(0.5f, 1f);
-        float decelTime = Random.Range(2f, 3f);
+        float decelTime = Random.Range(1f, 2f);
         float elapsed = 0f;
 
         float scrollSpeed = Random.Range(minScrollSpeed, maxScrollSpeed);
@@ -77,6 +77,8 @@ public class RouletteScroll : MonoBehaviour
         }
 
         isScrolling = false;
+
+        FindObjectOfType<Arrow>().CheckWinner();
     }
 
 

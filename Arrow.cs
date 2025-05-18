@@ -1,0 +1,30 @@
+using UnityEngine;
+
+public class Arrow : MonoBehaviour
+{
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    public void CheckWinner()
+    {
+        Vector2 arrowPos = transform.position;
+        Collider2D hit = Physics2D.OverlapPoint(arrowPos);
+
+        if (hit != null && hit.CompareTag("Colors"))
+        {
+            Debug.Log("Winner: " + hit.gameObject.name);
+        }
+        else
+        {
+            Debug.Log("No slot under arrow");
+        }
+    }
+}
