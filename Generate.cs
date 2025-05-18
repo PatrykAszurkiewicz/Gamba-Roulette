@@ -28,7 +28,6 @@ public class Generate : MonoBehaviour
 
     void GenerateSlots()
     {
-        slotSequence.Clear();
         int centerIndex = totalSlots / 2;
 
         // Lewa strona (w odwrotnej kolejnoœci bo idziemy w lewo)
