@@ -2,29 +2,35 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public RectTransform slotsContainer;
+    public Camera uiCamera;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void CheckWinner()
     {
-        Vector2 arrowPos = transform.position;
-        Collider2D hit = Physics2D.OverlapPoint(arrowPos);
+        Vector3 arrowScreenPos = RectTransformUtility.WorldToScreenPoint(uiCamera, transform.position);
+        float minDistance = float.MaxValue;
+        RectTransform winningSlot = null;
 
-        if (hit != null && hit.CompareTag("Colors"))
+        for (int i = 0; i < slotsContainer.childCount; i++)
         {
-            Debug.Log("Winner: " + hit.gameObject.name);
+            RectTransform slot = slotsContainer.GetChild(i) as RectTransform;
+            Vector3 slotScreenPos = RectTransformUtility.WorldToScreenPoint(uiCamera, slot.position);
+
+            float distance = Mathf.Abs(slotScreenPos.x - arrowScreenPos.x);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                winningSlot = slot;
+            }
+        }
+
+        if (winningSlot != null)
+        {
+            Debug.Log("Winning slot: " + winningSlot.name);
         }
         else
         {
-            Debug.Log("No slot under arrow");
+            Debug.LogWarning("Nie znaleziono slotu pod strza³k¹!");
         }
     }
 }

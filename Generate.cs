@@ -9,9 +9,7 @@ public class Generate : MonoBehaviour
 
     public Transform slotsContainer;
 
-    private RouletteScroll rs;
-
-    public int totalSlots = 15; // powinno byæ nieparzyste, by green by³ na œrodku
+    public int totalSlots = 15; //odd amount so green is in middle 
 
     private List<ColorType> slotSequence = new();
 
