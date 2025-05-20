@@ -29,7 +29,7 @@ public class RouletteScroll : MonoBehaviour
     {
         if(isScrolling) return;
 
-        //distanceToScroll = Random.Range(3000f, 6000f);
+        //tutaj logika obstawianka
         StartCoroutine(ScrollRoutine());
     }
     IEnumerator ScrollRoutine()
