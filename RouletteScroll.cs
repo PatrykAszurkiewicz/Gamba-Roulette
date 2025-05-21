@@ -9,9 +9,12 @@ public class RouletteScroll : MonoBehaviour
     public float maxScrollSpeed = 1000f;
     
     public float slotWidth = 150f;
-    public Button startButton;
+    public Button redButton;
+    public Button greenButton;
+    public Button blackButton;
 
     private bool isScrolling = false;
+
     //private float distanceToScroll;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,7 +32,11 @@ public class RouletteScroll : MonoBehaviour
     {
         if(isScrolling) return;
 
-        //tutaj logika obstawianka
+        redButton.interactable = false;
+        greenButton.interactable = false;
+        blackButton.interactable = false;
+        //set color buttons to not interactable
+
         StartCoroutine(ScrollRoutine());
     }
     IEnumerator ScrollRoutine()
@@ -79,6 +86,10 @@ public class RouletteScroll : MonoBehaviour
         isScrolling = false;
 
         FindObjectOfType<Arrow>().CheckWinner();
+
+        redButton.interactable = true;
+        greenButton.interactable = true;
+        blackButton.interactable = true;
     }
 
 
