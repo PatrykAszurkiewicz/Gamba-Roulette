@@ -6,7 +6,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class CashBalance : MonoBehaviour
 {
     public TMP_Text coinsText;
-    public float coins = 999.5f;
+    public float coins = 100f;
 
     public TMP_InputField coinsInputField;
     private float currentCoinsValue = 0f;
@@ -22,10 +22,12 @@ public class CashBalance : MonoBehaviour
     void Start()
     {
         UpdateCoinsText();
-        redText.text = null;
+        redText.text = "";
+        blackText.text = "";
+        greenText.text = "";
     }
 
-    void UpdateCoinsText()
+    public void UpdateCoinsText()
     {
         coinsText.text = "Coins: " + coins.ToString("0.00");
     }

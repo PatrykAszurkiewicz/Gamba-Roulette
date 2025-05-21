@@ -2819,7 +2819,9 @@ MonoBehaviour:
   minScrollSpeed: 1500
   maxScrollSpeed: 3000
   slotWidth: 150
-  startButton: {fileID: 555499508}
+  redButton: {fileID: 555499508}
+  greenButton: {fileID: 139258195}
+  blackButton: {fileID: 177656659}
 --- !u!1 &1073425102
 GameObject:
   m_ObjectHideFlags: 0

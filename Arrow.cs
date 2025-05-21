@@ -5,6 +5,12 @@ public class Arrow : MonoBehaviour
     public RectTransform slotsContainer;
     public Camera uiCamera;
 
+    CashBalance cb;
+
+    void Start()
+    {
+        cb = FindObjectOfType<CashBalance>();
+    }
     public void CheckWinner()
     {
         Vector3 arrowScreenPos = RectTransformUtility.WorldToScreenPoint(uiCamera, transform.position);
@@ -27,10 +33,36 @@ public class Arrow : MonoBehaviour
         if (winningSlot != null)
         {
             Debug.Log("Winning slot: " + winningSlot.name);
+
+            switch(winningSlot.name)
+            {
+                case "Black(Clone)":
+                    cb.coins = cb.coins + (cb.blackBet * 2);
+                    ClearBets();
+                    break;
+                case "Red(Clone)":
+                    cb.coins = cb.coins + (cb.redBet * 2);
+                    ClearBets();
+                    break;
+                case "Green(Clone)":
+                    cb.coins = cb.coins + (cb.greenBet * 14);
+                    ClearBets();
+                    break;
+            }
         }
         else
         {
             Debug.LogWarning("Nie znaleziono slotu pod strza³k¹!");
         }
+    }
+    public void ClearBets()
+    {
+        cb.redBet = 0f;
+        cb.redText.text = "";
+        cb.blackBet = 0f;
+        cb.blackText.text = "";
+        cb.greenBet = 0f;
+        cb.greenText.text = "";
+        cb.UpdateCoinsText();
     }
 }
