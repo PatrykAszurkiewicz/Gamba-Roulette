@@ -7,9 +7,12 @@ public class Arrow : MonoBehaviour
 
     CashBalance cb;
 
+    RollHistory history;
+
     void Start()
     {
         cb = FindObjectOfType<CashBalance>();
+        history = FindObjectOfType<RollHistory>();
     }
     public void CheckWinner()
     {
@@ -32,7 +35,7 @@ public class Arrow : MonoBehaviour
 
         if (winningSlot != null)
         {
-            Debug.Log("Winning slot: " + winningSlot.name);
+            //Debug.Log("Winning slot: " + winningSlot.name);
 
             switch(winningSlot.name)
             {
@@ -49,6 +52,7 @@ public class Arrow : MonoBehaviour
                     ClearBets();
                     break;
             }
+            history.AddRoll(winningSlot.name);
         }
         else
         {
