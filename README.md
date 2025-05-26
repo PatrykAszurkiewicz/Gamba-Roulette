@@ -17,7 +17,7 @@ Generate:</br>
 - Red/Green/Black Prefab - Objects that represent one slot in roulette.
 - Slots Container - An empty object that is a parent of all instantiated prefabs.
 - Total Slots - Amount of slots you want to instantiate.
-Roulette Scroll:</br>
+Roulette Scroll:
 - Slots Container - Same object that Generate.cs is using.
 - Min Scroll Speed - Minimum value of how fast roulette is going to move.
 - Max Scroll Speed - Maximum value of how fast roulette is going to move.
