@@ -13,17 +13,17 @@ If the wheel lands on your color, you win a multiplier of your bet. If not — y
 
 # <H1>Roulette – Script Instructions:</H1>
 There are 3 main scripts:
-Generate:</br>
+### Generate:
 - Red/Green/Black Prefab - Objects that represent one slot in roulette.
 - Slots Container - An empty object that is a parent of all instantiated prefabs.
 - Total Slots - Amount of slots you want to instantiate.
-Roulette Scroll:
+### Roulette Scroll:
 - Slots Container - Same object that Generate.cs is using.
 - Min Scroll Speed - Minimum value of how fast roulette is going to move.
 - Max Scroll Speed - Maximum value of how fast roulette is going to move.
 - Slot Width - Width of each instantiated slot.
 - Red/Green/Black Button - Objects of type button that when you press it, it places a bet on chosen color.
-Cash Balance:</br>
+### Cash Balance:</br>
 - Coins Text - Shows amount of coins you have.
 - Coins - Starting amount of coins.
 - Coins Input Field - Object of type Input Field where you can choose how much you want to bet.
