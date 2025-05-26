@@ -1,11 +1,11 @@
 # Roulette game
 
-Gambling game of roulette made using UNITY and C#.
+🎰 Roulette Game
+A simple gambling-style roulette game created in Unity (C#).
 
-Main goal is to bet on one of 3 colors (red, black, green) and win as much as you can before you lose all your money.
-Most of assets were made using Photoshop.
-I hope it's gonna help someone's gambling addiction since it's totally free to play.
-
+The main goal is to bet on one of three colors — Red, Black, or Green — and try to win as much as possible before you lose all your coins.
+Most of the visual assets were created in Photoshop.
+<i>Hopefully, this can help someone cope with gambling urges in a harmless way — it's completely free to play.</i>
 # <H1>Roulette – Script Instructions:</H1>
 There are 3 main scripts:
 Generate:
