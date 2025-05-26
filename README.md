@@ -5,7 +5,7 @@ A simple gambling-style roulette game created in Unity (C#).
 
 The main goal is to bet on one of three colors — Red, Black, or Green — and try to win as much as possible before you lose all your coins.
 Most of the visual assets were created in Photoshop.
-<i>Hopefully, this can help someone cope with gambling urges in a harmless way — it's completely free to play.</i>
+<i>Hopefully, this can help someone cope with gambling urges in a harmless way — it's completely free to play.</i></br>
 # <H1>Roulette – Script Instructions:</H1>
 There are 3 main scripts:
 Generate:
