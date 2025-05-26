@@ -23,7 +23,7 @@ There are 3 main scripts:
 - Max Scroll Speed - Maximum value of how fast roulette is going to move.
 - Slot Width - Width of each instantiated slot.
 - Red/Green/Black Button - Objects of type button that when you press it, it places a bet on chosen color.
-### Cash Balance:</br>
+### Cash Balance:
 - Coins Text - Shows amount of coins you have.
 - Coins - Starting amount of coins.
 - Coins Input Field - Object of type Input Field where you can choose how much you want to bet.
