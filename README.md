@@ -32,3 +32,5 @@ Cash Balance:
 ![generation](https://github.com/user-attachments/assets/61e1bdb8-b2c4-4421-a1e2-5eaba66081a0)</br>
 
 ![cash](https://github.com/user-attachments/assets/453129e1-b343-4817-9762-3f92ae2856a9)</br>
+
+![Roulette](https://github.com/user-attachments/assets/424466f5-4c95-479b-bfa8-c7958ab61550)
