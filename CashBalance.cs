@@ -15,9 +15,9 @@ public class CashBalance : MonoBehaviour
     public TMP_Text blackText;
     public TMP_Text greenText;
 
-    public float redBet = 0f;
-    public float blackBet = 0f;
-    public float greenBet = 0f;
+    [HideInInspector] public float redBet = 0f;
+    [HideInInspector] public float blackBet = 0f;
+    [HideInInspector] public float greenBet = 0f;
 
     void Start()
     {
